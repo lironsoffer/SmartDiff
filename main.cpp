@@ -18,7 +18,7 @@ using std::cerr;
 
 int main()
 {
-	vector <string> bag1,bag2;
+	vector <string> bag1,bag2,bag3;
 	vector <int> repetitions1,repetitions2;
 	unsigned int size1=0,size2=0;
 
