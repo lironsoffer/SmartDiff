@@ -12,7 +12,7 @@ void testAddToBag()
 	std::vector<int> repetitions1 = new std::vector<int>;
 	//addToBag(bag1,repetitions1,"ABCDE");
 	//addToBag(bag1,repetitions1,"ABCDE");
-	cout << addToBag(bag1,repetitions1,"ABCDE");
+	cout << addToBag(bag1,repetitions1,"ABCDE111");
 }
 
 
