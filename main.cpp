@@ -22,7 +22,7 @@ int main()
 	vector <int> repetitions1,repetitions2;
 	unsigned int size1=0,size2=0;
 
-	testAddToBag();
+	test();
 }
 /*
 int main(int argc,char* argv[])

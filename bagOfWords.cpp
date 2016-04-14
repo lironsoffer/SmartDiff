@@ -40,9 +40,8 @@ size_t addToBag(vector<string> &bag, vector<int> &repetitions,
 	else
 	{
 		index = findInBag(bag,str);
-		if (index==-1)
+		if (index==bag.size())
 		{
-			cout << "X";
 			bag.push_back(str);
 			index=bag.size()-1;
 		}
@@ -57,7 +56,7 @@ void updateRepetitions(vector<int> &repetitions, const size_t index)
 	{
 		if (index!=0)
 		{
-			cerr << "CREATING BAG ERROR" << endl;
+			cerr << "ERROR: CREATING BAG" << endl;
 		}
 		else
 		{
@@ -72,14 +71,21 @@ void updateRepetitions(vector<int> &repetitions, const size_t index)
 		}
 		else
 		{
-
+			repetitions[index]++;
 		}
+
 	}
+	return;
 }
 
-size_t findInBag (vector<string> bag, const string &str)
+size_t findInBag (const vector<string> &bag, const string &str)
 {
-	return -1;
+	vector<string>::size_type i;
+	for(i=0;(i<bag.size())&&(bag[i]!=str);i++)
+	{
+	}
+
+	return i;
 }
 
 
