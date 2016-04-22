@@ -21,6 +21,7 @@ using std::cout;
 using std::endl;
 using std::cerr;
 
+typedef std::string::size_type index_in_bag;
 
 int createBag(vector<string> &bag, vector<int> &repetitions, ifstream &file);
 /* Creates a bag from a file and returns the size of the bag*/
@@ -33,8 +34,10 @@ void updateRepetitions(vector<int> &repetitions, const size_t index);
 /* Takes an index of a word and updates the repetition's matching variable */
 size_t findInBag (const vector<string> &bag, const string &str);
 /* Returns the index of a string if exists, if dosn't exist returns -1 */
-
-
+void createWords(vector<string> &bag, vector<int> &repetitions, const string &str);
+/* Gets a string, divide it to words and updates the vector bag and repetitions */
+bool isLetter(char letter);
+/* Gets a char as parameter, returns true if valid letter or false otherwise */
 
 
 #endif /* BAG_H_ */

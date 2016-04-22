@@ -8,7 +8,7 @@
 #include <vector>
 void print(const vector<int> &fail,int counter)
 {
-	cout << "Total:" << counter << "\nSUCCEEDED:" << counter-fail.size()
+	cout << "\n\nTotal:" << counter << "\nSUCCEEDED:" << counter-fail.size()
 			<< "\nFAILED:" << fail.size() << endl;
 	if (fail.size()!=0)
 	{
@@ -37,25 +37,32 @@ void testFindInBag(vector<string> &bag,const string str,size_t expected, int* co
 	}
 }
 
+void testCreateBag(vector<string> &bag,vector<int> &repetitions)
+{
+	createBag(bag,repetitions);
+	for (vector<string>::size_type i=0;i<bag.size();i++)
+	{
+		cout << bag[i] << " ";
+	}
+
+}
+
+void testIsLetter(char letter,bool expected, int* counter, vector<int> &fail)
+{
+	(*counter)++;
+	if(isLetter(letter)!=expected)
+		fail.push_back(*counter);
+}
 void test()
 {
 	vector<int> fail;
 	int counter = 0;
 	std::vector<string> bag;
 	std::vector<int> repetitions;
-	addToBag(bag,repetitions,"ABC");
-	addToBag(bag,repetitions,"ABCD");
-	addToBag(bag,repetitions,"ABCDE");
-	addToBag(bag,repetitions,"ABCDEF");
 
-	testFindInBag(bag,"ABCD",1,&counter,fail);
-	testFindInBag(bag,"ABCDE",2,&counter,fail);
-	testFindInBag(bag,"ABE",4,&counter,fail);
+	testCreateBag(bag,repetitions);
+	//testIsLetter('a',true,&counter,fail);
 
-	testAddToBag(bag,repetitions,"ABE",4,&counter,fail);
-	testAddToBag(bag,repetitions,"ABE",4,&counter,fail);
-	testAddToBag(bag,repetitions,"ABE",4,&counter,fail);
-	testAddToBag(bag,repetitions,"ABC",0,&counter,fail);
 
 	print(fail,counter);
 }
