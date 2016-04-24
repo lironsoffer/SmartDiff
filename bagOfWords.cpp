@@ -119,7 +119,7 @@ void createWords(vector<string> &bag, vector<int> &repetitions, const string &st
 
 bool isLetter(char letter)
 {
-	if(((letter>=64) && (letter<=90))||((letter>=97) && (letter<=122)))
+	if(((letter>='a') && (letter<='z'))||((letter>='A') && (letter<='Z')))
 	{
 		return true;
 	}
