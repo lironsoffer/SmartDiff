@@ -13,7 +13,7 @@ int createBag(vector<string> &bag, vector<int> &repetitions, ifstream &file)
 	string str;
 	if (file.is_open())
 	{
-		while (file >> str)
+		while (getline(file,str))
 		{
 			createWords(bag,repetitions,str);
 		}
