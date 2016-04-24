@@ -44,6 +44,11 @@ void testCreateBag(vector<string> &bag,vector<int> &repetitions)
 	{
 		cout << bag[i] << " ";
 	}
+	cout << endl;
+	for (vector<string>::size_type i=0;i<repetitions.size();i++)
+		{
+			cout << repetitions[i] << " ";
+		}
 
 }
 
@@ -56,12 +61,18 @@ void testIsLetter(char letter,bool expected, int* counter, vector<int> &fail)
 void test()
 {
 	vector<int> fail;
-	int counter = 0;
-	std::vector<string> bag;
-	std::vector<int> repetitions;
+	std::vector<string> bag1,bag2;
+	std::vector<int> repetitions1,repetitions2;
 
-	testCreateBag(bag,repetitions);
+	//testCreateBag(bag1,repetitions1);
 	//testIsLetter('a',true,&counter,fail);
+
+	int size1=createBag(bag1,repetitions1);
+	int size2=createBag(bag2,repetitions2);
+	int size=findMax(size1,size2);
+	int counter=calculateCounter(bag1,repetitions1,bag2,repetitions2);
+	double similarity=calculateSimilarity(counter,size);
+
 
 
 	print(fail,counter);

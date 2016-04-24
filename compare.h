@@ -27,9 +27,11 @@ int findMax(const int size1, const int size2);
 /* Returns the max between two integers */
 double calculateSimilarity(const unsigned int counter, const unsigned int size);
 /* Calculate the similarity percentage between two bags */
-//double compareThreshold(const double threshold, const unsigned int similarity);
+double compareThreshold(const double threshold, const unsigned int similarity);
 /* Compare the required similarity percentage to the required */
-
-
-
+int calculateCounter(const vector<string> &bag1,const vector<int> &repetitions1,
+		const vector<string> &bag2, const vector<int> &repetitions2);
+/* Calculates the counter according to the assignment*/
+double compare(const vector<string> &bag1, const vector<int> &repetitions1,const int size1, const vector<string> &bag2, const vector<int> &repetitions2, const int size2);
+/* Calls all the required functions */
 #endif /* COMPARE_H_ */
