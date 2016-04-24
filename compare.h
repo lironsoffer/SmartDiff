@@ -3,6 +3,8 @@
  *
  *  Created on: Apr 12, 2016
  *      Author: liron_s
+ *
+ * Deals with
  */
 
 #ifndef COMPARE_H_
@@ -18,7 +20,6 @@ using std::vector;
 using std::cin;
 using std::cout;
 
-int calculateCounter();
 int findMin(const vector<int> &bag1, const vector<int> bag2, const size_t i,
 		const size_t j);
 /* Gets two repetitions vectors and indexes for a string.

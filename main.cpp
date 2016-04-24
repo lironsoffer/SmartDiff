@@ -16,37 +16,35 @@ using std::endl;
 using std::string;
 using std::cerr;
 
-char* extractFileName(char** const argv, const int index);
-
+//char* extractFileName(char** const argv, const int index);
+/*
 int main()
 {
 	test();
-}
+}*/
 
-/*
+
 int main(int argc,char** argv)
 {
-	int* v;
-	int* u;
-	int* threshold;
+	int v;
+	int u;
+	int threshold;
 
 	vector <string> bag1,bag2;
 	vector <int> repetitions1,repetitions2;
-	unsigned int size1=0,size2=0;
-  string line1;
-  vector <string> intxt;
+	int counter,size1,size2;
 
-  matchCommandParameters(argc,argv ,v ,u ,threshold);
+  matchCommandParameters(argc,argv ,&v ,&u ,&threshold);
   if(argc>1)
   {
-	  if ((*v)==-1)
+	  if (v==-1) // No first file
 	  {
 		  cerr << "NO PARAMTERS" << std::endl;
 
 	  }
-	  else
+	  else // First file exists
 	  {
-		  ifstream myfile1 (extractFileName(argv,(*v)));
+		  ifstream myfile1 (argv[v]);
 		  if (myfile1.is_open())
 		  {
 			  size1=createBag(bag1,repetitions1,myfile1);
@@ -57,13 +55,13 @@ int main(int argc,char** argv)
 			  cerr << "UNABLE TO OPEN FILE";
 		  }
 	  }
-	  if((*u)==-1)
+	  if(u==-1) // No second file
 	  {
 		  createBag(bag2,repetitions2);
 	  }
-	  else
+	  else // Second file exists
 	  {
-		   ifstream myfile2 (extractFileName(argv,(*u)));
+		   ifstream myfile2 (argv[u]);
 		   if (myfile2.is_open())
 		   {
 			  size2=createBag(bag2,repetitions2,myfile2);
@@ -74,6 +72,11 @@ int main(int argc,char** argv)
 			   cerr << "UNABLE TO OPEN FILE";
 		   }
 	  }
+
+	  cout<<"Size1="<<size1<<"   Size2="<<size2<<endl;
+	  //cout<<compare(bag1,repetitions1,size1,bag2,repetitions2,size2)<<endl;
+
+
   }
   else
   {
@@ -81,9 +84,10 @@ int main(int argc,char** argv)
   }
   return 0;
 }
-*/
 
+/*
 char* extractFileName(char** const argv,const int index)
 {
 	return argv[index];
 }
+*/
