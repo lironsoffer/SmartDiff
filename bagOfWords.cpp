@@ -13,9 +13,9 @@ int createBag(vector<string> &bag, vector<int> &repetitions, ifstream &file)
 	string str;
 	if (file.is_open())
 	{
-		while (file >> str)
+		while (getline(file,str))
 		{
-			createWords(bag,repetitions,str);
+			createWords(bag,repetitions,str,&size);
 		}
 	}
 	else
@@ -32,7 +32,7 @@ int createBag(vector<string> &bag, vector<int> &repetitions)
 	string str;
 	while (getline(cin,str))
 	{
-		createWords(bag,repetitions,str);
+		createWords(bag,repetitions,str,&size);
 	}
 
 	return size;
@@ -45,7 +45,7 @@ size_t addToBag(vector<string> &bag, vector<int> &repetitions,
 	if (bag.empty())
 	{
 		bag.push_back(str);
-		index=bag.size()-1;
+		index=bag.size()-1; //Equals to 0
 	}
 	else
 	{
@@ -53,7 +53,7 @@ size_t addToBag(vector<string> &bag, vector<int> &repetitions,
 		if (index==bag.size())
 		{
 			bag.push_back(str);
-			index=bag.size()-1;
+			index=bag.size()-1; // Equals to the previous index
 		}
 	}
 	updateRepetitions(repetitions, index);
@@ -99,7 +99,7 @@ size_t findInBag (const vector<string> &bag, const string &str)
 	return i;
 }
 
-void createWords(vector<string> &bag, vector<int> &repetitions, const string &str)
+void createWords(vector<string> &bag, vector<int> &repetitions, const string &str,int* size)
 {
 	string word="";
 	for(string::size_type i=0;i<str.size();i++)
@@ -113,13 +113,14 @@ void createWords(vector<string> &bag, vector<int> &repetitions, const string &st
 		{
 			addToBag(bag, repetitions, word);
 			word="";
+			(*size)++;
 		}
 	}
 }
 
 bool isLetter(char letter)
 {
-	if(((letter>=64) && (letter<=90))||((letter>=97) && (letter<=122)))
+	if(((letter>='a') && (letter<='z'))||((letter>='A') && (letter<='Z')))
 	{
 		return true;
 	}
