@@ -4,7 +4,7 @@
  *  Created on: Apr 12, 2016
  *      Author: liron_s
  */
-
+#include <iostream>
 #include "bagOfWords.h"
 
 int createBag(vector<string> &bag, vector<int> &repetitions, ifstream &file)
@@ -30,7 +30,7 @@ int createBag(vector<string> &bag, vector<int> &repetitions)
 {
 	int size=0;
 	string str;
-	while (getline(cin,str))
+	getline(cin,str);
 	{
 		createWords(bag,repetitions,str,&size);
 	}
@@ -102,19 +102,27 @@ size_t findInBag (const vector<string> &bag, const string &str)
 void createWords(vector<string> &bag, vector<int> &repetitions, const string &str,int* size)
 {
 	string word="";
-	for(string::size_type i=0;i<str.size();i++)
+	bool lastChar=false;
+	for(string::const_iterator iter=str.begin(); iter!=str.end(); ++iter)
 	{
-		char letter=str[i];
+		char letter=*iter;
 		if (isLetter(letter))
 		{
 			word+=tolower(letter);
+			lastChar=true;
 		}
-		else
+		else if (lastChar)
 		{
 			addToBag(bag, repetitions, word);
 			word="";
 			(*size)++;
+			lastChar=false;
 		}
+	}
+	if (lastChar)
+	{
+		addToBag(bag, repetitions, word);
+		(*size)++;
 	}
 }
 

@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <sstream>
 #include "testing.h"
 #include "bagOfWords.h"
-#include "cmd.cpp"
-//#include "cmd.h"
+#include "cmd.h"
 
 using std::ifstream;
 using std::vector;
@@ -16,25 +16,27 @@ using std::endl;
 using std::string;
 using std::cerr;
 
-//char* extractFileName(char** const argv, const int index);
-/*
-int main()
-{
-	test();
-}*/
-
-
 int main(int argc,char** argv)
 {
 	int v;
 	int u;
 	int threshold;
+	double requiredThreshold;
 
 	vector <string> bag1,bag2;
 	vector <int> repetitions1,repetitions2;
-	int counter,size1,size2;
+	int size1,size2;
 
   matchCommandParameters(argc,argv ,&v ,&u ,&threshold);
+  if (threshold==-1)
+  {
+	  requiredThreshold=1;
+  }
+  else
+  {
+	  std::istringstream input(argv[threshold]);
+	  input >> requiredThreshold;
+  }
   if(argc>1)
   {
 	  if (v==-1) // No first file
@@ -57,7 +59,7 @@ int main(int argc,char** argv)
 	  }
 	  if(u==-1) // No second file
 	  {
-		  createBag(bag2,repetitions2);
+		  size2=createBag(bag2,repetitions2);
 	  }
 	  else // Second file exists
 	  {
@@ -73,10 +75,10 @@ int main(int argc,char** argv)
 		   }
 	  }
 
-	  cout<<"Size1="<<size1<<"   Size2="<<size2<<endl;
-	  //cout<<compare(bag1,repetitions1,size1,bag2,repetitions2,size2)<<endl;
+	  cout<<"Size1="<<size1<<" Size2="<<size2<<endl;
 
-
+	  double identityLevel=compare(bag1,repetitions1,size1,bag2,repetitions2,size2);
+	  printMsgToScreen(argv[v],argv[u], identityLevel, requiredThreshold);
   }
   else
   {
@@ -84,10 +86,3 @@ int main(int argc,char** argv)
   }
   return 0;
 }
-
-/*
-char* extractFileName(char** const argv,const int index)
-{
-	return argv[index];
-}
-*/
