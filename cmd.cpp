@@ -8,8 +8,8 @@
 #include <string>
 //#include "cmd.h"
 
-static void matchCommandParameters(int argc, char **argv, int * v, int * u,
-		int * threshold) {
+void matchCommandParameters(int argc, char **argv, int * v, int * u, int * threshold)
+{
 	int i = 1;
 	*(v) = -1;
 	*(u) = -1;
@@ -34,8 +34,8 @@ static void matchCommandParameters(int argc, char **argv, int * v, int * u,
 	}
 }
 
-/*
-void printMsgToScreen(const std::string & v,const std::string & u, double identityLevel, double threshold)
+void printMsgToScreen(const std::string & v,const std::string & u,
+		double identityLevel, double threshold)
 {
 	std::cout << "V: " << v << ", " << "U: " << u << ", " << "IDENTITY: "
 			<< identityLevel << ", ";
@@ -45,5 +45,4 @@ void printMsgToScreen(const std::string & v,const std::string & u, double identi
 		std::cout << "SUSPECTED: " << 0 << std::endl;
 	}
 }
-*/
 
