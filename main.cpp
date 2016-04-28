@@ -79,8 +79,6 @@ int main(int argc,char** argv)
 		   }
 	  }
 
-	  cout<<"Size1="<<size1<<" Size2="<<size2<<endl;
-
 	  double identityLevel=compare(bag1,repetitions1,size1,bag2,repetitions2,size2);
 	  printMsgToScreen(file1Name,file2Name, identityLevel, requiredThreshold);
   }
