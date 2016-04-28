@@ -30,7 +30,7 @@ int createBag(vector<string> &bag, vector<int> &repetitions)
 {
 	int size=0;
 	string str;
-	getline(cin,str);
+	while(getline(cin,str))
 	{
 		createWords(bag,repetitions,str,&size);
 	}

@@ -16,6 +16,8 @@ using std::endl;
 using std::string;
 using std::cerr;
 
+char* extractFileName(char** argv,int index);
+
 int main(int argc,char** argv)
 {
 	int v;
@@ -28,6 +30,8 @@ int main(int argc,char** argv)
 	int size1,size2;
 
   matchCommandParameters(argc,argv ,&v ,&u ,&threshold);
+  char* file1Name = extractFileName(argv,v);
+  char* file2Name = extractFileName(argv,u);
   if (threshold==-1)
   {
 	  requiredThreshold=1;
@@ -46,7 +50,7 @@ int main(int argc,char** argv)
 	  }
 	  else // First file exists
 	  {
-		  ifstream myfile1 (argv[v]);
+		  ifstream myfile1 (file1Name);
 		  if (myfile1.is_open())
 		  {
 			  size1=createBag(bag1,repetitions1,myfile1);
@@ -63,7 +67,7 @@ int main(int argc,char** argv)
 	  }
 	  else // Second file exists
 	  {
-		   ifstream myfile2 (argv[u]);
+		   ifstream myfile2 (file2Name);
 		   if (myfile2.is_open())
 		   {
 			  size2=createBag(bag2,repetitions2,myfile2);
@@ -78,11 +82,20 @@ int main(int argc,char** argv)
 	  cout<<"Size1="<<size1<<" Size2="<<size2<<endl;
 
 	  double identityLevel=compare(bag1,repetitions1,size1,bag2,repetitions2,size2);
-	  printMsgToScreen(argv[v],argv[u], identityLevel, requiredThreshold);
+	  printMsgToScreen(file1Name,file2Name, identityLevel, requiredThreshold);
   }
   else
   {
 	  cerr << "NO PARAMTERS" << std::endl;
   }
   return 0;
+}
+
+char* extractFileName(char** argv,int index)
+{
+	if (index!=-1)
+	{
+		return argv[index];
+	}
+	return "STD";
 }
