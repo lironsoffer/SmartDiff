@@ -15,13 +15,15 @@ void print(const vector<int> &fail,int counter)
 	if (fail.size()!=0)
 	{
 		cout << "\nDetails:" << endl;
-		for(vector<int>::const_iterator iter=fail.begin(); iter!= fail.end(); ++iter)
+		for(vector<int>::const_iterator iter=fail.begin(); iter!= fail.end();
+				++iter)
 		{
 			cout << *iter << " ";
 		}
 	}
 }
-void testAddToBag(vector<string> &bag,vector<int> &repetitions,const string str,size_t expected, int* counter, vector<int> &fail)
+void testAddToBag(vector<string> &bag,vector<int> &repetitions,const string str,
+		size_t expected, int* counter, vector<int> &fail)
 {
 	(*counter)++;
 	if(!(addToBag(bag,repetitions,str)==expected))
@@ -30,7 +32,8 @@ void testAddToBag(vector<string> &bag,vector<int> &repetitions,const string str,
 	}
 }
 
-void testFindInBag(vector<string> &bag,const string str,size_t expected, int* counter, vector<int> &fail)
+void testFindInBag(vector<string> &bag,const string str,size_t expected,
+		int* counter, vector<int> &fail)
 {
 	(*counter)++;
 	if(!(findInBag(bag,str)==expected))
@@ -63,10 +66,10 @@ void printBag(vector<string> &bag,vector<int> &repetitions)
 		}
 }
 
-void testIsLetter(char letter,bool expected, int* counter, vector<int> &fail)
+void testisValid(char letter,bool expected, int* counter, vector<int> &fail)
 {
 	(*counter)++;
-	if(isLetter(letter)!=expected)
+	if(isValid(letter)!=expected)
 		fail.push_back(*counter);
 }
 void test()
@@ -77,7 +80,7 @@ void test()
 	std::vector<int> repetitions1,repetitions2;
 
 	testCreateBag(bag1,repetitions1);
-	//testIsLetter('a',true,&counter,fail);
+	//testisValid('a',true,&counter,fail);
 
 	/*
 	int size1=createBag(bag1,repetitions1);

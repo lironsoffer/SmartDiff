@@ -8,7 +8,8 @@
 #include <string>
 //#include "cmd.h"
 
-void matchCommandParameters(int argc, char **argv, int * v, int * u, int * threshold)
+void matchCommandParameters(int argc, char **argv, int * v, int * u,
+		int * threshold)
 {
 	int i = 1;
 	*(v) = -1;

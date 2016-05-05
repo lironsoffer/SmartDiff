@@ -4,9 +4,9 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "testing.h"
 #include "bagOfWords.h"
 #include "cmd.h"
+#include "compare.h"
 
 using std::ifstream;
 using std::vector;
@@ -17,6 +17,8 @@ using std::string;
 using std::cerr;
 
 char* extractFileName(char** argv,int index);
+void readFile(vector<string> &bag, vector<int> &repetitions, ifstream &myFile,
+		int *size);
 
 int main(int argc,char** argv)
 {
@@ -43,43 +45,38 @@ int main(int argc,char** argv)
   }
   if(argc>1)
   {
-	  if (v==-1) // No first file
+	  if ((v==-1)&&(u==-1)) // No Files
 	  {
 		  cerr << "NO PARAMTERS" << std::endl;
 
 	  }
-	  else // First file exists
+	  else
 	  {
 		  ifstream myfile1 (file1Name);
-		  if (myfile1.is_open())
+		  ifstream myfile2 (file2Name);
+
+		  if((v!=-1)&&(u!=-1))
 		  {
-			  size1=createBag(bag1,repetitions1,myfile1);
-			  myfile1.close();
+			  readFile(bag1, repetitions1, myfile1,&size1);
+			  readFile(bag2, repetitions2, myfile2,&size2);
 		  }
 		  else
 		  {
-			  cerr << "UNABLE TO OPEN FILE";
+			  if (u==-1)
+			  {
+				  readFile(bag1, repetitions1, myfile1,&size1);
+				  size2=createBag(bag2,repetitions2);
+			  }
+			  else if (v==-1)
+			  {
+				  size1=createBag(bag1,repetitions1);
+				  readFile(bag2, repetitions2, myfile2,&size2);
+			  }
 		  }
 	  }
-	  if(u==-1) // No second file
-	  {
-		  size2=createBag(bag2,repetitions2);
-	  }
-	  else // Second file exists
-	  {
-		   ifstream myfile2 (file2Name);
-		   if (myfile2.is_open())
-		   {
-			  size2=createBag(bag2,repetitions2,myfile2);
-			  myfile2.close();
-		   }
-		   else
-		   {
-			   cerr << "UNABLE TO OPEN FILE";
-		   }
-	  }
 
-	  double identityLevel=compare(bag1,repetitions1,size1,bag2,repetitions2,size2);
+	  double identityLevel=compare(bag1,repetitions1,size1,bag2,repetitions2,
+			  size2);
 	  printMsgToScreen(file1Name,file2Name, identityLevel, requiredThreshold);
   }
   else
@@ -95,5 +92,20 @@ char* extractFileName(char** argv,int index)
 	{
 		return argv[index];
 	}
+
 	return "STD";
+}
+
+void readFile(vector<string> &bag, vector<int> &repetitions, ifstream &myFile,
+		int *size)
+{
+	if (myFile.is_open())
+	{
+		(*size)=createBag(bag,repetitions,myFile);
+		myFile.close();
+	}
+    else
+    {
+	    cerr << "UNABLE TO OPEN FILE";
+    }
 }

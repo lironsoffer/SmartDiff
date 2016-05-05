@@ -14,7 +14,7 @@
 void testAddToBag(vector<string> &bag,vector<int> &repetitions,const string str,size_t expected, int* counter, vector<int> &fail);
 void testFindInBag(vector<string> &bag,const string str,size_t expected, int* counter, vector<int> &fail);
 void testCreateBag(vector<string> &bag,vector<int> &repetitions);
-void testIsLetter(char letter,bool expected, int* counter, vector<int> &fail);
+void testisValid(char letter,bool expected, int* counter, vector<int> &fail);
 void printBag(vector<string> &bag,vector<int> &repetitions);
 void print(const vector<int> &fail,int counter);
 void test();

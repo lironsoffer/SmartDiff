@@ -31,6 +31,8 @@ int findMax(const int size1, const int size2)
 double calculateSimilarity(const unsigned int counter,
 		const unsigned int size)
 {
+	if (size==0)
+		return 1;
 	return (double(counter)/double(size));
 }
 

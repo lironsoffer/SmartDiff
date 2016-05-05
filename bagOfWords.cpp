@@ -99,14 +99,15 @@ size_t findInBag (const vector<string> &bag, const string &str)
 	return i;
 }
 
-void createWords(vector<string> &bag, vector<int> &repetitions, const string &str,int* size)
+void createWords(vector<string> &bag, vector<int> &repetitions,
+const string &str,int* size)
 {
 	string word="";
 	bool lastChar=false;
 	for(string::const_iterator iter=str.begin(); iter!=str.end(); ++iter)
 	{
 		char letter=*iter;
-		if (isLetter(letter))
+		if (isValid(letter))
 		{
 			word+=tolower(letter);
 			lastChar=true;
@@ -114,7 +115,7 @@ void createWords(vector<string> &bag, vector<int> &repetitions, const string &st
 		else if (lastChar)
 		{
 			addToBag(bag, repetitions, word);
-			word="";
+			word.erase();
 			(*size)++;
 			lastChar=false;
 		}
@@ -126,11 +127,12 @@ void createWords(vector<string> &bag, vector<int> &repetitions, const string &st
 	}
 }
 
-bool isLetter(char letter)
+bool isValid(char letter)
 {
-	if(((letter>='a') && (letter<='z'))||((letter>='A') && (letter<='Z')))
+	if(((letter=='-') || (letter==','))||((letter=='.') || (letter==' ') ||
+			(letter=='\n')))
 	{
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
